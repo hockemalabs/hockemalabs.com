@@ -315,22 +315,46 @@
       width: 100%; height: 100%;
       display: block;
     }
-    .project-visual .status { position: absolute; top: 14px; right: 14px; }
-    .eq rect { transform-origin: center bottom; transform-box: fill-box; }
-    @keyframes eq {
-      from { transform: scaleY(0.35); }
-      to   { transform: scaleY(1); }
+    .title-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 14px; margin-bottom: 4px; }
+    .title-row h3 { margin: 0; }
+    .project-visual .logo-wrap {
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 18px 18px 16px;
     }
-    .eq rect { animation: eq 1.1s ease-in-out infinite alternate; }
-    .eq rect:nth-child(1) { animation-delay: 0s; }
-    .eq rect:nth-child(2) { animation-delay: -.35s; }
-    .eq rect:nth-child(3) { animation-delay: -.7s; }
-    .eq rect:nth-child(4) { animation-delay: -.2s; }
-    .eq rect:nth-child(5) { animation-delay: -.55s; }
-    .eq rect:nth-child(6) { animation-delay: -.9s; }
-    .eq rect:nth-child(7) { animation-delay: -.1s; }
-    .card:hover .float { transform: translateY(-4px); }
-    .float { transition: transform .35s ease; }
+    .project-visual .logo-wrap img { transition: transform .35s ease; }
+    .card:hover .logo-wrap img { transform: translateY(-3px); }
+    .project-visual .brand-logo { max-height: 140px; width: auto; max-width: 80%; }
+    .project-visual .brand-logo.wide { max-height: 92px; max-width: 86%; }
+    .project-visual.karaoke {
+      background:
+        radial-gradient(260px 160px at 30% 110%, rgba(255, 0, 128, 0.22), transparent 70%),
+        radial-gradient(260px 160px at 75% 0%, rgba(0, 120, 255, 0.22), transparent 70%),
+        linear-gradient(180deg, rgba(135, 215, 255, 0.04), rgba(4, 6, 11, 0.6));
+    }
+    .project-visual.casino {
+      background:
+        radial-gradient(300px 170px at 50% 110%, rgba(255, 170, 40, 0.16), transparent 70%),
+        radial-gradient(260px 160px at 50% 0%, rgba(0, 150, 255, 0.18), transparent 70%),
+        linear-gradient(180deg, rgba(135, 215, 255, 0.04), rgba(4, 6, 11, 0.6));
+    }
+    .bullets { margin: 0 0 20px; padding: 0; list-style: none; display: grid; gap: 9px; }
+    .bullets li { position: relative; padding-left: 18px; color: var(--muted); font-size: 0.95rem; }
+    .bullets li::before {
+      content: "";
+      position: absolute; left: 0; top: 0.6em;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--grad);
+    }
+    .store-row { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 22px; }
+    .store-badge { display: inline-flex; border-radius: 8px; transition: transform .2s ease, opacity .2s ease; }
+    .store-badge img { height: 40px; width: auto; }
+    .store-badge:hover { transform: translateY(-2px); opacity: .92; }
     .status {
       display: inline-flex;
       align-items: center;
@@ -485,8 +509,8 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .reveal { opacity: 1; transform: none; transition: none; }
-      .card, .btn, .email, .float { transition: none; }
-      .eq rect { animation: none; }
+      .card, .btn, .email { transition: none; }
+      .project-visual .logo-wrap img { transition: none; }
     }
 
     /* ---------- Responsive ---------- */
@@ -499,7 +523,9 @@
       section { padding: 64px 0; }
       .grid-2 { grid-template-columns: 1fr; }
       .project { padding: 22px 18px; }
-      .project-visual { height: 160px; }
+      .project-visual { height: 170px; }
+      .project-visual .brand-logo { max-height: 124px; }
+      .project-visual .brand-logo.wide { max-height: 76px; }
       .card { padding: 24px 22px; }
       .nav-inner { height: 60px; }
       .nav-links a { padding: 8px 9px; font-size: 0.86rem; }
@@ -565,105 +591,65 @@
         <div class="grid grid-2">
 
           <article class="card project reveal">
-            <div class="project-visual" aria-hidden="true">
-              <svg viewBox="0 0 400 190" fill="none">
-                <defs>
-                  <linearGradient id="g-card" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#87d7ff"/><stop offset="1" stop-color="#0075ff"/>
-                  </linearGradient>
-                  <linearGradient id="g-chip" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#18e8ff"/><stop offset="1" stop-color="#0096ff"/>
-                  </linearGradient>
-                </defs>
-                <g class="float">
-                  <!-- back card -->
-                  <g transform="rotate(-12 170 100)">
-                    <rect x="130" y="48" width="78" height="108" rx="10" fill="#07101c" stroke="url(#g-card)" stroke-width="1.5"/>
-                    <text x="142" y="76" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#87d7ff">A</text>
-                    <path d="M169 92 l10 12 -10 14 -10 -14z" fill="url(#g-card)"/>
-                    <text x="196" y="146" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#87d7ff" transform="rotate(180 190 140)">A</text>
-                  </g>
-                  <!-- front card -->
-                  <g transform="rotate(8 230 100)">
-                    <rect x="190" y="42" width="78" height="108" rx="10" fill="#0a1526" stroke="url(#g-card)" stroke-width="1.5"/>
-                    <text x="202" y="70" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#18e8ff">K</text>
-                    <path d="M229 86 c-9 -11 -22 2 -10 14 l10 11 10 -11 c12 -12 -1 -25 -10 -14z" fill="url(#g-card)"/>
-                    <text x="256" y="140" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#18e8ff" transform="rotate(180 250 134)">K</text>
-                  </g>
-                  <!-- chip -->
-                  <g transform="translate(300 128)">
-                    <circle r="26" fill="#07101c" stroke="url(#g-chip)" stroke-width="2"/>
-                    <circle r="26" fill="none" stroke="url(#g-chip)" stroke-width="7" stroke-dasharray="9 11.7" opacity=".9"/>
-                    <circle r="14" fill="none" stroke="url(#g-chip)" stroke-width="1.5"/>
-                    <text x="0" y="5" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#87d7ff">HE</text>
-                  </g>
-                </g>
-              </svg>
+            <div class="project-visual casino">
+              <div class="logo-wrap">
+                <img class="brand-logo" src="Images/house-edge-casino-logo.webp" width="640" height="321" alt="House Edge Casino" loading="lazy" />
+              </div>
+            </div>
+            <div class="title-row">
+              <h3>House Edge Casino</h3>
               <span class="status status-live">Available on iOS</span>
             </div>
-            <h3>House Edge Casino</h3>
             <p class="kind">iOS game</p>
             <p class="desc">
-              A casino simulation for iPhone and iPad. Learn how blackjack, slots, roulette, and video poker really
-              work, with strategy guidance built in and leaderboards to chase. It's a game, not a gambling app, and
-              no real money is ever involved.
+              A free casino simulator and strategy trainer for iPhone and iPad. Play blackjack, video poker,
+              roulette, and slots with real casino odds and real-time strategy hints. No ads, no coin packs, and no
+              real-money gambling.
             </p>
             <ul class="tags" aria-label="Included games and features">
               <li>Blackjack</li>
               <li>Slots</li>
               <li>Roulette</li>
               <li>Video Poker</li>
-              <li>Strategy guidance</li>
+              <li>Strategy hints</li>
+              <li>Real casino odds</li>
               <li>Achievements</li>
               <li>Leaderboards</li>
             </ul>
-            <div class="project-foot">
+            <div class="project-foot store-row">
+              <a class="store-badge" href="https://apps.apple.com/us/app/house-edge-casino/id6758695813" target="_blank" rel="noopener noreferrer">
+                <img src="Images/app-store-badge.svg" width="120" height="40" alt="Download on the App Store" loading="lazy" />
+              </a>
               <a class="link-arrow" href="https://houseedgecasino.com" target="_blank" rel="noopener noreferrer">
-                Visit houseedgecasino.com
+                houseedgecasino.com
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </a>
             </div>
           </article>
 
           <article class="card project reveal d1">
-            <div class="project-visual" aria-hidden="true">
-              <svg viewBox="0 0 400 190" fill="none">
-                <defs>
-                  <linearGradient id="g-mic" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#87d7ff"/><stop offset="1" stop-color="#0075ff"/>
-                  </linearGradient>
-                  <linearGradient id="g-bar" x1="0" y1="1" x2="0" y2="0">
-                    <stop offset="0" stop-color="#0075ff"/><stop offset="1" stop-color="#18e8ff"/>
-                  </linearGradient>
-                </defs>
-                <g class="float">
-                  <!-- microphone -->
-                  <g transform="translate(150 40)">
-                    <rect x="-17" y="0" width="34" height="62" rx="17" fill="#0a1526" stroke="url(#g-mic)" stroke-width="2"/>
-                    <path d="M-10 18h20M-10 28h20M-10 38h20" stroke="url(#g-mic)" stroke-width="1.5" opacity=".7"/>
-                    <path d="M-32 44a32 32 0 0 0 64 0" stroke="url(#g-mic)" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M0 76v18M-16 94h32" stroke="url(#g-mic)" stroke-width="2" stroke-linecap="round"/>
-                  </g>
-                  <!-- equalizer -->
-                  <g class="eq" transform="translate(212 40)">
-                    <rect x="0"   y="0" width="12" height="94" rx="6" fill="url(#g-bar)" opacity=".9"/>
-                    <rect x="20"  y="0" width="12" height="94" rx="6" fill="url(#g-bar)" opacity=".9"/>
-                    <rect x="40"  y="0" width="12" height="94" rx="6" fill="url(#g-bar)" opacity=".9"/>
-                    <rect x="60"  y="0" width="12" height="94" rx="6" fill="url(#g-bar)" opacity=".9"/>
-                    <rect x="80"  y="0" width="12" height="94" rx="6" fill="url(#g-bar)" opacity=".9"/>
-                    <rect x="100" y="0" width="12" height="94" rx="6" fill="url(#g-bar)" opacity=".9"/>
-                    <rect x="120" y="0" width="12" height="94" rx="6" fill="url(#g-bar)" opacity=".9"/>
-                  </g>
-                </g>
-              </svg>
+            <div class="project-visual karaoke">
+              <div class="logo-wrap">
+                <picture>
+                  <source srcset="Images/playnext-karaoke-logo.webp" type="image/webp" />
+                  <img class="brand-logo wide" src="Images/playnext-karaoke-logo.png" width="1006" height="287" alt="PlayNext Karaoke" loading="lazy" />
+                </picture>
+              </div>
+            </div>
+            <div class="title-row">
+              <h3>PlayNext Karaoke</h3>
               <span class="status status-dev">In development</span>
             </div>
-            <h3>PlayNext Karaoke</h3>
-            <p class="kind">Karaoke app</p>
+            <p class="kind">Karaoke web app</p>
             <p class="desc">
-              Our next project is a karaoke app, currently in development. We'll share more once it's ready for
-              an audience.
+              A karaoke app for home parties that runs in the browser. One laptop hosts the whole night, and
+              everyone else joins from their phone.
             </p>
+            <ul class="bullets">
+              <li>Guests scan a QR code, pick a name and avatar, and add songs from their phones.</li>
+              <li>A round-robin queue gives everyone a turn before anyone sings twice.</li>
+              <li>Searches YouTube and your own karaoke library, with an optional display window for the TV.</li>
+            </ul>
             <div class="project-foot">
               <p class="note">Curious? <a href="mailto:contactus@hockemalabs.com?subject=PlayNext%20Karaoke">Drop us a line</a> and we'll let you know when it launches.</p>
             </div>
