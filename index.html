@@ -436,7 +436,7 @@
       font-size: clamp(1.7rem, 3.4vw, 2.4rem);
       letter-spacing: -0.02em;
     }
-    .contact-card p { margin: 0 auto; max-width: 54ch; color: var(--muted); font-size: 1.05rem; }
+    .contact-card p { margin: 0 auto; max-width: 54ch; color: var(--text); font-size: clamp(1.15rem, 2vw, 1.4rem); font-weight: 500; letter-spacing: -0.01em; }
     .email {
       display: inline-flex;
       align-items: center;
@@ -549,7 +549,6 @@
             See our work
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
           </a>
-          <a class="btn btn-ghost" href="#contact">Say hello</a>
         </div>
       </div>
     </header>
@@ -680,34 +679,31 @@
         <div class="about-grid">
           <div class="reveal">
             <span class="eyebrow">About</span>
-            <h2 class="about-title">A small studio that takes its time</h2>
+            <h2 class="about-title">A small studio that respects its customers</h2>
             <p>
               <strong style="color:var(--text)">Hockema Labs LLC</strong> is an independent software company in
               Springfield, Oregon. We design, build, and publish our own products, which means every decision, from
               the first sketch to the final release, is ours to get right.
             </p>
-            <p>
-              We'd rather ship a few things we're proud of than many we aren't. If something isn't ready, it waits.
-            </p>
             <ul class="facts" aria-label="Company facts">
               <li><span class="k">Based in</span><span class="v">Springfield, Oregon, USA</span></li>
               <li><span class="k">Focus</span><span class="v">Mobile apps, games, and software tools</span></li>
-              <li><span class="k">Platforms</span><span class="v">iOS</span></li>
+              <li><span class="k">Platforms</span><span class="v">In-Browser, iOS, Windows, Mac</span></li>
             </ul>
           </div>
 
           <div class="principles">
             <div class="card reveal d1">
-              <h3><span>01</span>Sweat the details</h3>
-              <p>The small things are what people notice. We keep polishing until they're right.</p>
+              <h3><span>01</span>Finished before it ships</h3>
+              <p>We'd rather delay a release than ship something half-done and fix it later. If a feature isn't right yet, it isn't in.</p>
             </div>
             <div class="card reveal d2">
-              <h3><span>02</span>Earn the download</h3>
-              <p>A phone is personal space. Anything we put there should deserve to be there.</p>
+              <h3><span>02</span>Your attention is yours</h3>
+              <p>No nagging notifications, no artificial urgency, and nothing engineered to keep you from putting the phone down. You come back because you want to.</p>
             </div>
             <div class="card reveal d3">
-              <h3><span>03</span>Nothing hidden</h3>
-              <p>Our apps do what they say, and nothing you didn't ask for.</p>
+              <h3><span>03</span>Honest by default</h3>
+              <p>No surprise charges, no buried settings, and no data collected that the app doesn't need to work. What you see is what you get.</p>
             </div>
           </div>
         </div>
@@ -719,8 +715,7 @@
       <div class="wrap">
         <div class="contact-card reveal">
           <span class="eyebrow">Contact</span>
-          <h2>Say hello</h2>
-          <p>Questions, feedback, press, or support. We'd like to hear from you.</p>
+          <p>Questions, feedback, press, or support.</p>
           <a class="email" href="mailto:contactus@hockemalabs.com">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
             contactus@hockemalabs.com
