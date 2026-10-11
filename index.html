@@ -3,292 +3,705 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hockema Labs LLC</title>
-  <meta
-    name="description"
-    content="Hockema Labs LLC is an independent software company focused on mobile applications, games, and software tools."
-  />
+  <title>Hockema Labs — Independent software studio</title>
+  <meta name="description" content="Hockema Labs LLC is an independent software studio in Springfield, Oregon building mobile applications, games, and software tools, including House Edge Casino and PlayNext Karaoke." />
+  <meta name="theme-color" content="#04060b" />
+  <link rel="canonical" href="https://hockemalabs.com/" />
+
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="192x192" href="Images/icon-192.png" />
+  <link rel="apple-touch-icon" href="Images/apple-touch-icon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Hockema Labs" />
+  <meta property="og:title" content="Hockema Labs — Independent software studio" />
+  <meta property="og:description" content="Mobile applications, games, and software tools from an independent studio in Springfield, Oregon." />
+  <meta property="og:url" content="https://hockemalabs.com/" />
+  <meta property="og:image" content="https://hockemalabs.com/Images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Hockema Labs LLC",
+    "url": "https://hockemalabs.com/",
+    "logo": "https://hockemalabs.com/Images/icon-512.png",
+    "email": "contactus@hockemalabs.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Springfield",
+      "addressRegion": "OR",
+      "addressCountry": "US"
+    }
+  }
+  </script>
+
   <style>
     :root {
-      --bg-top: #04142f;
-      --bg-bottom: #00091d;
-      --panel: rgba(8, 26, 60, 0.9);
-      --panel-border: rgba(85, 130, 220, 0.18);
-      --text: #e8eefc;
-      --muted: #b7c5e8;
-      --accent: #ffd43b;
-      --link: #ffd43b;
-      --shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
-      --radius: 24px;
-      --max-width: 980px;
+      --bg: #04060b;
+      --bg-elev: #080c14;
+      --surface: rgba(255, 255, 255, 0.035);
+      --surface-strong: rgba(255, 255, 255, 0.06);
+      --border: rgba(135, 215, 255, 0.14);
+      --border-strong: rgba(135, 215, 255, 0.32);
+      --text: #eef4ff;
+      --muted: #9fb1c9;
+      --faint: #6b7d96;
+      --ice: #87d7ff;
+      --cyan: #18e8ff;
+      --blue: #0096ff;
+      --deep: #0075ff;
+      --grad: linear-gradient(135deg, #87d7ff 0%, #18e8ff 38%, #0096ff 72%, #0075ff 100%);
+      --glow: 0 0 0 1px rgba(135, 215, 255, 0.18), 0 20px 60px -20px rgba(0, 150, 255, 0.45);
+      --radius: 20px;
+      --max: 1120px;
+      --font: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: var(--font);
       color: var(--text);
-      background:
-        radial-gradient(circle at top, #0a255a 0%, var(--bg-top) 30%, var(--bg-bottom) 100%);
-      line-height: 1.65;
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    a {
-      color: var(--link);
-      text-decoration: none;
-      transition: opacity 0.15s ease;
-    }
+    a { color: var(--ice); text-decoration: none; }
+    a:hover { color: var(--cyan); }
 
-    a:hover {
-      text-decoration: underline;
-    }
+    img { max-width: 100%; height: auto; display: block; }
 
     .wrap {
-      width: min(calc(100% - 32px), var(--max-width));
+      width: min(calc(100% - 40px), var(--max));
       margin: 0 auto;
     }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-      background: rgba(2, 10, 28, 0.78);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
+    /* ---------- Navigation ---------- */
     .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      transition: background-color .3s ease, border-color .3s ease, backdrop-filter .3s ease;
+      border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled {
+      background: rgba(4, 6, 11, 0.72);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border-bottom-color: rgba(135, 215, 255, 0.08);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      height: 68px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+    .brand:hover { color: var(--text); }
+    .brand img { width: 30px; height: 29px; }
+    .brand .labs { color: var(--blue); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0; padding: 0;
+      list-style: none;
+    }
+    .nav-links a {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color .2s ease, background-color .2s ease;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--surface-strong); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      padding: 150px 0 96px;
+      text-align: center;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      z-index: -2;
+      background-image:
+        linear-gradient(rgba(135, 215, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(135, 215, 255, 0.07) 1px, transparent 1px);
+      background-size: 56px 56px;
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 0%, transparent 100%);
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 0%, transparent 100%);
+    }
+    .hero::after {
+      content: "";
+      position: absolute; inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(700px 420px at 50% 28%, rgba(0, 150, 255, 0.30), transparent 70%),
+        radial-gradient(420px 260px at 50% 30%, rgba(24, 232, 255, 0.14), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-logo {
+      width: min(560px, 86vw);
+      margin: 0 auto 28px;
+      filter: drop-shadow(0 0 40px rgba(0, 150, 255, 0.25));
+    }
+    .hero h1 {
+      margin: 0 auto;
+      max-width: 15ch;
+      font-size: clamp(2rem, 5.2vw, 3.6rem);
+      line-height: 1.08;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+    .hero h1 span {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero p {
+      margin: 22px auto 0;
+      max-width: 58ch;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.6vw, 1.18rem);
+    }
+    .cta-row {
       display: flex;
       justify-content: center;
-      align-items: center;
-      gap: 22px;
-      padding: 14px 16px;
       flex-wrap: wrap;
-      font-size: 0.94rem;
-      font-weight: 500;
+      gap: 14px;
+      margin-top: 36px;
     }
-
-    .nav a {
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.98rem;
+      transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      color: #03101f;
+      background: var(--grad);
+      box-shadow: 0 10px 30px -10px rgba(0, 150, 255, 0.7);
+    }
+    .btn-primary:hover { color: #03101f; box-shadow: 0 16px 40px -10px rgba(24, 232, 255, 0.7); }
+    .btn-ghost {
       color: var(--text);
-      opacity: 0.92;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
     }
+    .btn-ghost:hover { color: var(--text); border-color: var(--ice); background: var(--surface-strong); }
+    .btn svg { width: 18px; height: 18px; }
 
-    .nav a:hover {
-      color: var(--accent);
-      text-decoration: none;
-      opacity: 1;
+    .chips {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 48px 0 0;
+      padding: 0;
+      list-style: none;
     }
-
-    header {
-      padding: 28px 0 8px;
-      text-align: center;
-    }
-
-    .logo {
-      max-width: 620px;
-      width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto 6px;
-    }
-
-    .tagline {
-      margin: 0;
-      font-size: 0.95rem;
+    .chips li {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
       color: var(--muted);
-      letter-spacing: 0.01em;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    main {
-      padding-bottom: 4px;
-    }
-
-    section.card {
-      background: var(--panel);
-      border: 1px solid var(--panel-border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 22px 28px 24px;
-      margin: 18px 0;
-      scroll-margin-top: 60px;
-    }
-
-    main .card:first-child {
-      margin-top: 10px;
-    }
-
-    h2 {
+    /* ---------- Sections ---------- */
+    section { padding: 88px 0; scroll-margin-top: 60px; }
+    .eyebrow {
+      display: inline-block;
       margin: 0 0 14px;
-      text-align: center;
-      font-size: clamp(1.6rem, 2.1vw, 2.15rem);
-      line-height: 1.15;
+      color: var(--cyan);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+    }
+    .section-head { max-width: 640px; margin-bottom: 44px; }
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+      line-height: 1.12;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .section-head p { margin: 14px 0 0; color: var(--muted); font-size: 1.05rem; }
+
+    .grid { display: grid; gap: 20px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .card {
+      position: relative;
+      padding: 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-strong);
+      box-shadow: var(--glow);
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.22rem;
+      font-weight: 650;
       letter-spacing: -0.01em;
     }
+    .card p { margin: 0; color: var(--muted); font-size: 0.98rem; }
 
-    .lead {
-      font-size: 1rem;
-      margin: 0 0 10px;
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px; height: 46px;
+      margin-bottom: 18px;
+      border-radius: 12px;
+      color: var(--ice);
+      background: linear-gradient(135deg, rgba(135, 215, 255, 0.16), rgba(0, 117, 255, 0.16));
+      border: 1px solid var(--border);
+    }
+    .icon svg { width: 22px; height: 22px; }
+
+    /* ---------- Projects ---------- */
+    .project {
+      display: flex;
+      flex-direction: column;
+      padding: 32px;
+    }
+    .project-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .status::before {
+      content: "";
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 10px currentColor;
+    }
+    .status-live { color: #3ddc97; background: rgba(61, 220, 151, 0.1); border: 1px solid rgba(61, 220, 151, 0.28); }
+    .status-dev { color: var(--cyan); background: rgba(24, 232, 255, 0.08); border: 1px solid rgba(24, 232, 255, 0.28); }
+    .project h3 { font-size: 1.5rem; margin-top: 4px; }
+    .project .kind {
+      margin: 0 0 14px;
+      color: var(--faint);
+      font-size: 0.86rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .project p.desc { margin-bottom: 18px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; padding: 0; list-style: none; }
+    .tags li {
+      padding: 5px 11px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      color: var(--ice);
+      background: rgba(0, 150, 255, 0.1);
+      border: 1px solid rgba(0, 150, 255, 0.22);
+    }
+    .project-foot { margin-top: auto; padding-top: 6px; }
+    .link-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+    }
+    .link-arrow svg { width: 16px; height: 16px; transition: transform .2s ease; }
+    .link-arrow:hover svg { transform: translateX(3px); }
+    .project .note { color: var(--faint); font-size: 0.9rem; }
+
+    /* ---------- About ---------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .about-title {
+      margin: 0 0 18px;
+      font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+      line-height: 1.12;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .about-grid p { color: var(--muted); font-size: 1.05rem; margin: 0 0 16px; }
+    .facts { margin: 28px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+    .facts li {
+      display: flex;
+      gap: 14px;
+      align-items: baseline;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .facts .k { color: var(--faint); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; min-width: 88px; }
+    .facts .v { color: var(--text); font-weight: 500; }
+    .principles { display: grid; gap: 16px; }
+    .principles .card { padding: 22px 24px; }
+    .principles h3 { font-size: 1.05rem; margin-bottom: 6px; }
+    .principles h3 span {
+      display: inline-block;
+      width: 26px;
+      color: var(--cyan);
+      font-variant-numeric: tabular-nums;
     }
 
-    .muted {
-      color: var(--muted);
-      margin: 0;
-      font-size: 0.97rem;
+    /* ---------- Contact ---------- */
+    .contact-card {
+      position: relative;
+      text-align: center;
+      padding: 64px 28px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--border-strong);
+      background:
+        radial-gradient(520px 260px at 50% 0%, rgba(0, 150, 255, 0.28), transparent 70%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
     }
+    .contact-card h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+      letter-spacing: -0.02em;
+    }
+    .contact-card p { margin: 0 auto; max-width: 48ch; color: var(--muted); font-size: 1.05rem; }
+    .email {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+      padding: 14px 24px;
+      border-radius: 14px;
+      border: 1px solid var(--border-strong);
+      background: rgba(4, 6, 11, 0.6);
+      color: var(--text);
+      font-weight: 600;
+      font-size: clamp(0.95rem, 2.4vw, 1.15rem);
+      overflow-wrap: anywhere;
+      transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+    .email:hover { color: var(--text); border-color: var(--cyan); box-shadow: var(--glow); transform: translateY(-2px); }
+    .email svg { width: 20px; height: 20px; color: var(--cyan); flex: none; }
 
-    .product-head {
+    /* ---------- Footer ---------- */
+    footer {
+      padding: 40px 0 48px;
+      border-top: 1px solid rgba(135, 215, 255, 0.08);
+      color: var(--faint);
+      font-size: 0.88rem;
+    }
+    .foot-inner {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px 12px;
-      margin-bottom: 12px;
+      gap: 16px;
+    }
+    .foot-links { display: flex; gap: 20px; margin: 0; padding: 0; list-style: none; }
+    .foot-links a { color: var(--muted); }
+    .foot-links a:hover { color: var(--text); }
+
+    /* ---------- Reveal ---------- */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.d1 { transition-delay: .08s; }
+    .reveal.d2 { transition-delay: .16s; }
+    .reveal.d3 { transition-delay: .24s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .card, .btn, .email { transition: none; }
     }
 
-    .product-badge {
-      display: inline-block;
-      background: rgba(255, 212, 59, 0.14);
-      border: 1px solid rgba(255, 212, 59, 0.22);
-      color: var(--accent);
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-weight: 700;
-      font-size: 0.74rem;
-      letter-spacing: 0.02em;
-      line-height: 1;
-      opacity: 0.92;
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
     }
-
-    .product-title {
-      display: inline-block;
-      font-size: clamp(1.45rem, 2vw, 1.85rem);
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1.2;
-      letter-spacing: -0.01em;
+    @media (max-width: 680px) {
+      .wrap { width: min(calc(100% - 32px), var(--max)); }
+      .hero { padding: 124px 0 72px; }
+      section { padding: 64px 0; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .project { padding: 26px 22px; }
+      .project-top { flex-direction: column; }
+      .card { padding: 24px 22px; }
+      .nav-inner { height: 60px; }
+      .nav-links a { padding: 8px 9px; font-size: 0.86rem; }
+      .contact-card { padding: 48px 20px; }
+      .email { padding: 12px 16px; font-size: 0.9rem; gap: 8px; }
     }
-
-    ul {
-      padding-left: 1.2rem;
-      margin: 14px 0 0;
-      font-size: 0.97rem;
-    }
-
-    li {
-      margin-bottom: 7px;
-    }
-
-    .product-link {
-      margin-top: 14px;
-    }
-
-    .contact {
-      text-align: center;
-      font-size: 1rem;
-    }
-
-    .contact p {
-      margin: 0;
-    }
-
-    footer {
-      padding: 22px 0 100vh;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.87rem;
-    }
-
-    @media (max-width: 760px) {
-      section.card {
-        padding: 20px 18px 22px;
-        margin: 16px 0;
-      }
-
-      .product-head {
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      .product-title {
-        display: block;
-      }
+    @media (max-width: 480px) {
+      .brand .wordmark { display: none; }
+      .nav-links a { padding: 8px 7px; font-size: 0.82rem; }
     }
   </style>
 </head>
 <body>
 
-  <div class="topbar">
-    <div class="wrap">
-      <nav class="nav" aria-label="Primary">
-        <a href="#">Home</a>
-        <a href="#about">About</a>
-        <a href="#products">Products</a>
-        <a href="#contact">Contact</a>
-        <a href="privacypolicy.html">Privacy Policy</a>
-      </nav>
-    </div>
-  </div>
-
-  <header class="wrap">
-    <img src="Images/hockema-labs-logo.png" alt="Hockema Labs LLC" class="logo" />
-    <p class="tagline">Mobile Application and Game Development</p>
-  </header>
-
-  <main class="wrap">
-
-    <section class="card" id="about">
-      <h2>About</h2>
-      <p class="lead">
-        <strong>Hockema Labs LLC</strong> is an independent software company based in Springfield, Oregon, United States.
-      </p>
-      <p class="muted">
-        We develop mobile applications, games, and software tools, and publish original digital products designed to be simple, reliable, and respectful of the user experience.
-      </p>
-    </section>
-
-    <section class="card" id="products">
-      <h2>Products</h2>
-
-      <div class="product-head">
-        <span class="product-badge">iOS Game</span>
-        <span class="product-title">House Edge Casino</span>
-      </div>
-
-      <p class="lead">
-        A casino simulation game developed and published by Hockema Labs LLC.
-      </p>
-
-      <ul>
-        <li>Includes blackjack, slots, roulette, and video poker.</li>
-        <li>Features strategy guidance, achievements, and leaderboards.</li>
-        <li>No real-money gambling. </li>
+  <nav class="nav" id="nav" aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Hockema Labs home">
+        <img src="Images/hockema-labs-mark.png" width="30" height="29" alt="" />
+        <span class="wordmark">Hockema <span class="labs">Labs</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="privacypolicy.html">Privacy</a></li>
       </ul>
+    </div>
+  </nav>
 
-      <p class="muted product-link">
-        Official website:
-        <a href="https://houseedgecasino.com" target="_blank" rel="noopener noreferrer">houseedgecasino.com</a>
-      </p>
+  <main id="top">
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="wrap">
+        <picture>
+          <source srcset="Images/hockema-labs-logo.webp" type="image/webp" />
+          <img class="hero-logo reveal in" src="Images/hockema-labs-logo.png" width="922" height="571"
+               alt="Hockema Labs" fetchpriority="high" />
+        </picture>
+        <h1 class="reveal in d1">Software built to be <span>simple, reliable, and respectful</span> of the people who use it.</h1>
+        <p class="reveal in d2">
+          Hockema Labs is an independent software studio in Springfield, Oregon. We design, develop, and publish
+          mobile applications, games, and software tools.
+        </p>
+        <div class="cta-row reveal in d3">
+          <a class="btn btn-primary" href="#work">
+            See our work
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        </div>
+        <ul class="chips reveal in d3" aria-label="What we build">
+          <li>Mobile apps</li>
+          <li>Games</li>
+          <li>Software tools</li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Work -->
+    <section id="work">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Projects</span>
+          <h2>What we're building</h2>
+          <p>Original products designed, developed, and published by Hockema Labs.</p>
+        </div>
+
+        <div class="grid grid-2">
+
+          <article class="card project reveal">
+            <div class="project-top">
+              <span class="icon" aria-hidden="true">
+                <!-- cards / casino icon -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="5" width="11" height="15" rx="2" transform="rotate(-8 8.5 12.5)"/>
+                  <rect x="10" y="4" width="11" height="15" rx="2" transform="rotate(8 15.5 11.5)"/>
+                  <path d="M15.5 9.5l1.2 2.2 2.3 1.3-2.3 1.3-1.2 2.2-1.2-2.2-2.3-1.3 2.3-1.3z" fill="currentColor" stroke="none"/>
+                </svg>
+              </span>
+              <span class="status status-live">Available on iOS</span>
+            </div>
+            <h3>House Edge Casino</h3>
+            <p class="kind">iOS game</p>
+            <p class="desc">
+              A casino simulation game for iPhone and iPad. Play classic table and machine games, learn the
+              strategies behind them, and climb the leaderboards. There is no real-money gambling.
+            </p>
+            <ul class="tags" aria-label="Included games and features">
+              <li>Blackjack</li>
+              <li>Slots</li>
+              <li>Roulette</li>
+              <li>Video Poker</li>
+              <li>Strategy guidance</li>
+              <li>Achievements</li>
+              <li>Leaderboards</li>
+            </ul>
+            <div class="project-foot">
+              <a class="link-arrow" href="https://houseedgecasino.com" target="_blank" rel="noopener noreferrer">
+                Visit houseedgecasino.com
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="card project reveal d1">
+            <div class="project-top">
+              <span class="icon" aria-hidden="true">
+                <!-- microphone icon -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="3" width="6" height="11" rx="3"/>
+                  <path d="M5 11a7 7 0 0 0 14 0M12 18v3M8 21h8"/>
+                </svg>
+              </span>
+              <span class="status status-dev">In development</span>
+            </div>
+            <h3>PlayNext Karaoke</h3>
+            <p class="kind">Karaoke app</p>
+            <p class="desc">
+              Our next project: a karaoke app currently in development at Hockema Labs. We'll share more as it
+              gets closer to release.
+            </p>
+            <div class="project-foot">
+              <p class="note">Want to know when it launches? <a href="mailto:contactus@hockemalabs.com?subject=PlayNext%20Karaoke">Send us a note</a>.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
     </section>
 
-    <section class="card contact" id="contact">
-      <h2>Contact</h2>
-      <p>
-        For general inquiries, email
-        <a href="mailto:contactus@hockemalabs.com">contactus@hockemalabs.com</a>.
-      </p>
+    <!-- About -->
+    <section id="about">
+      <div class="wrap">
+        <div class="about-grid">
+          <div class="reveal">
+            <span class="eyebrow">About</span>
+            <h2 class="about-title">An independent studio with a simple standard</h2>
+            <p>
+              <strong style="color:var(--text)">Hockema Labs LLC</strong> is an independent software company based in
+              Springfield, Oregon, United States. We develop mobile applications, games, and software tools, and we
+              publish original digital products under our own name.
+            </p>
+            <p>
+              Being independent means we get to decide what ships. We'd rather build a small number of things well than
+              a large number of things quickly.
+            </p>
+            <ul class="facts" aria-label="Company facts">
+              <li><span class="k">Based in</span><span class="v">Springfield, Oregon, USA</span></li>
+              <li><span class="k">Focus</span><span class="v">Mobile apps, games, and software tools</span></li>
+              <li><span class="k">Platforms</span><span class="v">iOS</span></li>
+            </ul>
+          </div>
+
+          <div class="principles">
+            <div class="card reveal d1">
+              <h3><span>01</span>Simple</h3>
+              <p>Clear interfaces and focused features. Every screen should be understandable at a glance.</p>
+            </div>
+            <div class="card reveal d2">
+              <h3><span>02</span>Reliable</h3>
+              <p>Software that does what it says, every time, without surprises.</p>
+            </div>
+            <div class="card reveal d3">
+              <h3><span>03</span>Respectful</h3>
+              <p>We respect people's time, attention, and privacy, and design with the user experience first.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact-card reveal">
+          <span class="eyebrow">Contact</span>
+          <h2>Let's talk</h2>
+          <p>Questions about our apps, press inquiries, or support requests are all welcome.</p>
+          <a class="email" href="mailto:contactus@hockemalabs.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            contactus@hockemalabs.com
+          </a>
+        </div>
+      </div>
     </section>
 
   </main>
 
   <footer>
-    © 2026 Hockema Labs LLC. All rights reserved.
+    <div class="wrap foot-inner">
+      <span>© 2026 Hockema Labs LLC. All rights reserved.</span>
+      <ul class="foot-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="privacypolicy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
   </footer>
+
+  <script>
+    (function () {
+      var nav = document.getElementById('nav');
+      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 24); }
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      var items = document.querySelectorAll('.reveal:not(.in)');
+      if (!('IntersectionObserver' in window)) {
+        items.forEach(function (el) { el.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+      items.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 
 </body>
 </html>
