@@ -226,26 +226,6 @@
     .btn-ghost:hover { color: var(--text); border-color: var(--ice); background: var(--surface-strong); }
     .btn svg { width: 18px; height: 18px; }
 
-    .chips {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 48px 0 0;
-      padding: 0;
-      list-style: none;
-    }
-    .chips li {
-      padding: 7px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--muted);
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
 
     /* ---------- Sections ---------- */
     section { padding: 88px 0; scroll-margin-top: 60px; }
@@ -270,7 +250,6 @@
 
     .grid { display: grid; gap: 20px; }
     .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     .card {
       position: relative;
@@ -303,18 +282,6 @@
     }
     .card p { margin: 0; color: var(--muted); font-size: 0.98rem; }
 
-    .icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 46px; height: 46px;
-      margin-bottom: 18px;
-      border-radius: 12px;
-      color: var(--ice);
-      background: linear-gradient(135deg, rgba(135, 215, 255, 0.16), rgba(0, 117, 255, 0.16));
-      border: 1px solid var(--border);
-    }
-    .icon svg { width: 22px; height: 22px; }
 
     /* ---------- Projects ---------- */
     .project {
@@ -524,14 +491,13 @@
 
     /* ---------- Responsive ---------- */
     @media (max-width: 900px) {
-      .grid-3 { grid-template-columns: 1fr 1fr; }
       .about-grid { grid-template-columns: 1fr; gap: 32px; }
     }
     @media (max-width: 680px) {
       .wrap { width: min(calc(100% - 32px), var(--max)); }
       .hero { padding: 124px 0 72px; }
       section { padding: 64px 0; }
-      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
       .project { padding: 22px 18px; }
       .project-visual { height: 160px; }
       .card { padding: 24px 22px; }
@@ -576,7 +542,7 @@
         <h1 class="reveal in d1">Apps and games <span>worth keeping</span> on your phone.</h1>
         <p class="reveal in d2">
           Hockema Labs is an independent software studio in Springfield, Oregon. We design and publish our own
-          mobile apps, games, and tools, and we take the time to get them right.
+          mobile apps, games, and tools.
         </p>
         <div class="cta-row reveal in d3">
           <a class="btn btn-primary" href="#work">
@@ -585,11 +551,6 @@
           </a>
           <a class="btn btn-ghost" href="#contact">Say hello</a>
         </div>
-        <ul class="chips reveal in d3" aria-label="What we build">
-          <li>Mobile apps</li>
-          <li>Games</li>
-          <li>Software tools</li>
-        </ul>
       </div>
     </header>
 
@@ -599,7 +560,7 @@
         <div class="section-head reveal">
           <span class="eyebrow">Projects</span>
           <h2>What we've made, and what's next</h2>
-          <p>Everything here is designed, built, and published by Hockema Labs.</p>
+          <p>Designed, built, and published by Hockema Labs.</p>
         </div>
 
         <div class="grid grid-2">
@@ -709,40 +670,6 @@
             </div>
           </article>
 
-        </div>
-      </div>
-    </section>
-
-    <!-- What we do -->
-    <section id="services">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <span class="eyebrow">What we do</span>
-          <h2>What we make</h2>
-          <p>Three kinds of things, all held to the same standard.</p>
-        </div>
-        <div class="grid grid-3">
-          <div class="card reveal">
-            <span class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18h2"/></svg>
-            </span>
-            <h3>Mobile applications</h3>
-            <p>Apps for iPhone and iPad that do their job well and then get out of the way.</p>
-          </div>
-          <div class="card reveal d1">
-            <span class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12a4 4 0 0 1 4 4v1.5a3.5 3.5 0 0 1-6.3 2.1L15 15H9l-.7.6A3.5 3.5 0 0 1 2 13.5V12a4 4 0 0 1 4-4z"/><path d="M8 11v3M6.5 12.5h3M16 12h.01M18 13.5h.01"/></svg>
-            </span>
-            <h3>Games</h3>
-            <p>Games built to be fun on their own merits, without the usual tricks to keep you playing.</p>
-          </div>
-          <div class="card reveal d2">
-            <span class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5a4 4 0 0 0 5 5l-9 9a2.1 2.1 0 0 1-3-3l9-9z"/><path d="M19.5 10.5l-2-2M5 5l3 3"/></svg>
-            </span>
-            <h3>Software tools</h3>
-            <p>Small utilities that solve a real problem and stay simple.</p>
-          </div>
         </div>
       </div>
     </section>
